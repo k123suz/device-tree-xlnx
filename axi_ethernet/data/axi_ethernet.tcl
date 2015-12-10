@@ -123,7 +123,7 @@ proc generate {drv_handle} {
     set mdio_node [gen_mdio_node $drv_handle $node]
 
 
-    set phytype [get_property CONFIG.PHY_TYPE $eth_ip]
+    set phytype "SGMII"
     set_property phy-mode "$phytype" $drv_handle
     if {$phytype == "SGMII" || $phytype == "1000BaseX"} {
 	  set phytype "sgmii"
@@ -147,7 +147,7 @@ proc generate {drv_handle} {
 }
 
 proc pcspma_phy_node {slave} {
-	set phyaddr [get_property CONFIG.PHYADDR $slave]
+	set phyaddr [get_property CONFIG.C_PHYADDR $slave]
 	set phyaddr [::hsi::utils::convert_binary_to_decimal $phyaddr]
 	set phymode "phy0"
 
